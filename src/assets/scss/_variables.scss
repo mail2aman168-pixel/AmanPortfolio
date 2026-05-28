@@ -1,0 +1,28 @@
+// Shared Variables
+$primary-gradient: linear-gradient(135deg, #6E00FF 0%, #00D4FF 100%);
+$secondary-gradient: linear-gradient(135deg, #FF0080 0%, #7928CA 100%);
+$font-family-sans-serif: 'Outfit', 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+// Dark Theme (Default)
+$bg-dark: #0B1020;
+$bg-slate: #0F172A;
+$bg-card-dark: rgba(255, 255, 255, 0.03);
+$border-glass-dark: rgba(255, 255, 255, 0.1);
+$text-main-dark: #E2E8F0;
+$text-muted-dark: #94A3B8;
+
+// Light Theme
+$bg-light: #F8FAFC;
+$bg-slate-light: #F1F5F9;
+$bg-card-light: rgba(15, 23, 42, 0.03);
+$border-glass-light: rgba(15, 23, 42, 0.1);
+$text-main-light: #0F172A;
+$text-muted-light: #475569;
+
+// Glows
+$text-glow: #00D4FF;
+$glow-cyan: 0 0 20px rgba(0, 212, 255, 0.3);
+$glow-purple: 0 0 20px rgba(110, 0, 255, 0.3);
+
+// Bootstrap Overrides
+$primary: #6E00FF;

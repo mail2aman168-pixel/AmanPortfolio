@@ -1,0 +1,53 @@
+@import "assets/scss/variables";
+
+.about-section {
+  padding: 120px 0;
+  background: radial-gradient(circle at 10% 50%, rgba(110, 0, 255, 0.03) 0%, transparent 50%);
+}
+
+.about-image-wrapper {
+  position: relative;
+  
+  .image-bg-glow {
+    position: absolute;
+    top: -10%;
+    left: -10%;
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+    filter: blur(40px);
+    z-index: 0;
+  }
+
+  .experience-badge {
+    position: absolute;
+    bottom: 30px;
+    right: -20px;
+    z-index: 2;
+    text-align: center;
+    min-width: 120px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  }
+}
+
+.social-link {
+  color: var(--text-muted);
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    color: white;
+    transform: scale(1.1);
+  }
+}
+
+@media (max-width: 991.98px) {
+  .about-image-wrapper {
+    max-width: 400px;
+    margin: 0 auto;
+    
+    .experience-badge {
+      right: 0;
+    }
+  }
+}

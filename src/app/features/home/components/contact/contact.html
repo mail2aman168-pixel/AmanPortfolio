@@ -1,0 +1,109 @@
+<section id="contact" class="contact-section position-relative">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <h6 class="text-glow-cyan fw-bold mb-3 text-uppercase tracking-wider">Get in Touch</h6>
+      <h2 class="display-5 fw-bold mb-4">Let's Create <span class="gradient-text">Something Great</span></h2>
+    </div>
+
+    <div class="row g-5">
+      <div class="col-lg-5" data-aos="fade-right">
+        <div class="glass-card p-4 h-100">
+          <h4 class="fw-bold mb-4">Contact Information</h4>
+          
+          <div class="contact-info-item d-flex align-items-center mb-4">
+            <div class="info-icon glass-card me-3">
+              <i class="bi bi-telephone text-glow-cyan"></i>
+            </div>
+            <div>
+              <p class="text-muted small mb-0">Phone</p>
+              <h6 class="mb-0 text-white">+91 7292030063</h6>
+            </div>
+          </div>
+
+          <div class="contact-info-item d-flex align-items-center mb-4">
+            <div class="info-icon glass-card me-3">
+              <i class="bi bi-envelope text-glow-cyan"></i>
+            </div>
+            <div>
+              <p class="text-muted small mb-0">Email</p>
+              <h6 class="mb-0 text-white">mail2aman168@gmail.com</h6>
+            </div>
+          </div>
+
+          <div class="contact-info-item d-flex align-items-center mb-4">
+            <div class="info-icon glass-card me-3">
+              <i class="bi bi-geo-alt text-glow-cyan"></i>
+            </div>
+            <div>
+              <p class="text-muted small mb-0">Location</p>
+              <h6 class="mb-0 text-white">Noida, Uttar Pradesh, India</h6>
+            </div>
+          </div>
+
+          <div class="contact-info-item d-flex align-items-center mb-5">
+            <div class="info-icon glass-card me-3">
+              <i class="bi bi-linkedin text-glow-cyan"></i>
+            </div>
+            <div>
+              <p class="text-muted small mb-0">LinkedIn</p>
+              <h6 class="mb-0 text-white">linkedin.com/in/amankumar</h6>
+            </div>
+          </div>
+
+          <h5 class="fw-bold mb-3">Follow Me</h5>
+          <div class="d-flex gap-3">
+            <a href="#" class="social-icon"><i class="bi bi-github"></i></a>
+            <a href="#" class="social-icon"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="social-icon"><i class="bi bi-twitter-x"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-7" data-aos="fade-left">
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="glass-card p-4 h-100">
+          <!-- Success Message -->
+          <div *ngIf="submitSuccess" class="alert alert-success bg-opacity-10 border-success text-success mb-4" data-aos="zoom-in">
+            <i class="bi bi-check-circle-fill me-2"></i> Your message has been sent successfully! I'll get back to you soon.
+          </div>
+
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label text-muted small">Your Name</label>
+              <input type="text" formControlName="name" 
+                     [class.is-invalid]="isInvalid('name')"
+                     class="form-control bg-transparent border-white border-opacity-10 text-white py-2" placeholder="John Doe">
+              <div class="invalid-feedback small">Please enter your name (min 3 chars).</div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label text-muted small">Your Email</label>
+              <input type="email" formControlName="email" 
+                     [class.is-invalid]="isInvalid('email')"
+                     class="form-control bg-transparent border-white border-opacity-10 text-white py-2" placeholder="john@example.com">
+              <div class="invalid-feedback small">Please enter a valid email address.</div>
+            </div>
+            <div class="col-12">
+              <label class="form-label text-muted small">Subject</label>
+              <input type="text" formControlName="subject" 
+                     [class.is-invalid]="isInvalid('subject')"
+                     class="form-control bg-transparent border-white border-opacity-10 text-white py-2" placeholder="Project Inquiry">
+              <div class="invalid-feedback small">Please provide a subject (min 5 chars).</div>
+            </div>
+            <div class="col-12">
+              <label class="form-label text-muted small">Message</label>
+              <textarea formControlName="message" 
+                        [class.is-invalid]="isInvalid('message')"
+                        class="form-control bg-transparent border-white border-opacity-10 text-white py-2" rows="5" placeholder="Hi Aman, I'd like to talk about..."></textarea>
+              <div class="invalid-feedback small">Please enter your message (min 10 chars).</div>
+            </div>
+            <div class="col-12 mt-4">
+              <button type="submit" [disabled]="isSubmitting" class="btn btn-futuristic w-100 d-flex align-items-center justify-content-center gap-2">
+                <span *ngIf="isSubmitting" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                {{ isSubmitting ? 'Sending...' : 'Send Message' }}
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

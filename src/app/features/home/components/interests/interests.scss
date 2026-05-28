@@ -1,0 +1,26 @@
+@import "assets/scss/variables";
+
+.interests-section {
+  padding: 100px 0;
+}
+
+.interest-card {
+  height: 100%;
+  
+  .interest-icon-wrapper {
+    display: inline-flex;
+    padding: 20px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+  }
+  
+  &:hover {
+    .interest-icon-wrapper {
+      background: rgba(0, 212, 255, 0.05);
+      border-color: rgba(0, 212, 255, 0.2);
+      transform: rotate(10deg);
+    }
+  }
+}

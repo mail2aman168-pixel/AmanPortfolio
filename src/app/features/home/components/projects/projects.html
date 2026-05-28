@@ -1,0 +1,34 @@
+<section id="projects" class="projects-section">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <h6 class="text-glow-cyan fw-bold mb-3 text-uppercase tracking-wider">Portfolio</h6>
+      <h2 class="display-5 fw-bold mb-4">Featured <span class="gradient-text">Projects</span></h2>
+    </div>
+
+    <div class="row g-4">
+      @for (project of projects; track project.title) {
+        <div class="col-lg-6" data-aos="fade-up">
+          <div class="project-card glass-card overflow-hidden h-100">
+            <div class="project-image-wrapper overflow-hidden">
+              <img [src]="project.image" [alt]="project.title" class="img-fluid project-image">
+              <div class="project-overlay d-flex align-items-center justify-content-center">
+                <a [href]="project.link" class="btn btn-futuristic">View Project</a>
+              </div>
+            </div>
+            <div class="p-4">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4 class="fw-bold mb-0 text-white">{{ project.title }}</h4>
+                <div class="project-tech">
+                  @for (tech of project.tech; track tech) {
+                    <span class="badge bg-slate text-glow-cyan small me-1 border border-white border-opacity-10">{{ tech }}</span>
+                  }
+                </div>
+              </div>
+              <p class="text-muted small mb-0">{{ project.description }}</p>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

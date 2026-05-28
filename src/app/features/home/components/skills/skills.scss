@@ -1,0 +1,270 @@
+@use "sass:math";
+@import "assets/scss/variables";
+
+.skills-section {
+  padding: 120px 0;
+  background: radial-gradient(circle at 50% 50%, rgba(110, 0, 255, 0.05) 0%, transparent 70%);
+  min-height: 800px;
+  transition: all 0.5s ease;
+
+  // Theme Variations
+  &.effect-cyber {
+    background: radial-gradient(circle at 50% 50%, rgba(255, 0, 255, 0.08) 0%, transparent 70%);
+    .particle { background: #ff00ff; box-shadow: 0 0 10px #ff00ff; }
+    .knowledge-pot { border-color: #ff00ff; box-shadow: 0 0 30px rgba(255, 0, 255, 0.3); }
+    .pot-liquid { background: linear-gradient(0deg, rgba(255, 0, 255, 0.2) 0%, rgba(0, 255, 128, 0.1) 100%); }
+    .skill-bubble { border-color: rgba(255, 0, 255, 0.2); }
+  }
+
+  &.effect-gold {
+    background: radial-gradient(circle at 50% 50%, rgba(255, 189, 0, 0.05) 0%, transparent 70%);
+    .particle { background: #FFBD00; box-shadow: 0 0 10px #FFBD00; }
+    .knowledge-pot { border-color: #FFBD00; box-shadow: 0 0 30px rgba(255, 189, 0, 0.3); }
+    .pot-liquid { background: linear-gradient(0deg, rgba(255, 189, 0, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%); }
+    .skill-bubble { border-color: rgba(255, 189, 0, 0.2); }
+  }
+
+  &.effect-minimal {
+    background: transparent;
+    .particle { background: var(--text-muted); box-shadow: none; opacity: 0.2 !important; }
+    .knowledge-pot { border-radius: 20px; height: 120px; border-color: var(--border-glass); box-shadow: none; }
+    .pot-liquid { display: none; }
+    .skill-bubble { background: var(--bg-card); border-color: var(--border-glass); }
+  }
+}
+
+// Effect Switcher UI
+.effect-switcher {
+  z-index: 10;
+  position: relative;
+}
+
+.btn-effect {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-muted);
+  padding: 8px 16px;
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.07);
+    color: var(--text-main);
+  }
+
+  &.active {
+    background: var(--primary-gradient);
+    border-color: transparent;
+    color: white;
+    box-shadow: 0 0 20px rgba(110, 0, 255, 0.4);
+    transform: translateY(-2px);
+  }
+
+  [data-theme="light"] & {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 0, 0, 0.1);
+    
+    &.active {
+      color: white;
+    }
+  }
+}
+
+// Background Particles
+.particles-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+
+  .particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: white;
+    border-radius: 50%;
+    filter: blur(1px);
+    box-shadow: 0 0 10px white;
+    transition: background 0.5s ease, box-shadow 0.5s ease;
+    
+    @for $i from 1 through 15 {
+      &:nth-child(#{$i}) {
+        top: math.random(100) * 1%;
+        left: math.random(100) * 1%;
+        opacity: math.random(5) * 0.1;
+      }
+    }
+  }
+}
+
+.skills-drop-zone {
+  min-height: 250px;
+  z-index: 2;
+}
+
+// Skill Bubbles
+.skill-bubble {
+  padding: 12px 24px;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+
+  i {
+    font-size: 1.2rem;
+    color: var(--skill-color, #00D4FF);
+    text-shadow: 0 0 10px var(--skill-color);
+  }
+
+  &:hover {
+    transform: scale(1.1) translateY(-5px) !important;
+    background: rgba(255, 255, 255, 0.07);
+    border-color: var(--skill-color);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 15px var(--skill-color);
+    
+    .skill-glow {
+      opacity: 1;
+    }
+  }
+
+  .skill-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, var(--skill-color) 0%, transparent 70%);
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.3s;
+    pointer-events: none;
+    z-index: -1;
+    filter: blur(20px);
+  }
+
+  [data-theme="light"] & {
+    background: rgba(15, 23, 42, 0.03);
+    border-color: rgba(15, 23, 42, 0.1);
+  }
+}
+
+// The Knowledge Pot
+.knowledge-pot {
+  width: 350px;
+  height: 180px;
+  border-radius: 20px 20px 150px 150px;
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(20px);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(255, 255, 255, 0.05);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  }
+
+  .pot-inner {
+    text-align: center;
+    z-index: 1;
+  }
+
+  .pot-liquid {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60%;
+    background: linear-gradient(0deg, rgba(110, 0, 255, 0.2) 0%, rgba(0, 212, 255, 0.1) 100%);
+    filter: blur(20px);
+    animation: wave 4s ease-in-out infinite alternate;
+  }
+
+  .pot-text {
+    position: relative;
+    text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+    
+    h4 {
+      background: $primary-gradient;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+
+  [data-theme="light"] & {
+    background: rgba(15, 23, 42, 0.02);
+    border-color: rgba(15, 23, 42, 0.1);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+  }
+}
+
+@keyframes wave {
+  from { transform: translateY(10px) scaleX(1); }
+  to { transform: translateY(-10px) scaleX(1.1); }
+}
+
+.category-chip {
+  background: rgba(255, 255, 255, 0.02);
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.05);
+    opacity: 1 !important;
+    border-color: rgba(0, 212, 255, 0.3) !important;
+  }
+
+  span {
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  [data-theme="light"] & {
+    background: rgba(0, 0, 0, 0.02);
+    border-color: rgba(0, 0, 0, 0.1);
+  }
+}
+
+// Mobile Adjustments
+@media (max-width: 768px) {
+  .skills-section {
+    padding: 80px 0;
+  }
+
+  .knowledge-pot {
+    width: 280px;
+    height: 150px;
+    border-radius: 15px 15px 120px 120px;
+  }
+
+  .skill-bubble {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    
+    i {
+      font-size: 1rem;
+    }
+  }
+}

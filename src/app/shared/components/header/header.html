@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-lg fixed-top glass-navbar" [class.scrolled]="isScrolled">
+  <div class="container">
+    <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
+      <div class="logo-wrapper me-2">
+        <svg width="30" height="30" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 4L28 10V22L16 28L4 22V10L16 4Z" stroke="url(#logo_grad)" stroke-width="2" fill="rgba(110, 0, 255, 0.1)"/>
+          <path d="M11 20L16 11L21 20" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <defs>
+            <linearGradient id="logo_grad" x1="4" y1="4" x2="28" y2="28" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#6E00FF"/>
+              <stop offset="1" stop-color="#00D4FF"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <span class="gradient-text">AMAN</span>KUMAR
+    </a>
+    <button class="navbar-toggler" type="button" (click)="toggleMenu()" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="bi bi-list text-white fs-3"></span>
+    </button>
+    <div class="collapse navbar-collapse" [class.show]="menuOpen" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        @for (item of navItems; track item.link) {
+          <li class="nav-item">
+            <a class="nav-link px-3" [href]="item.link" (click)="closeMenu()">{{ item.name }}</a>
+          </li>
+        }
+        <li class="nav-item d-flex align-items-center ms-lg-2">
+          <button class="theme-toggle-btn glass-card" (click)="toggleTheme()" [title]="'Switch to ' + (currentTheme() === 'dark' ? 'light' : 'dark') + ' mode'">
+            <i class="bi" [class.bi-sun-fill]="currentTheme() === 'dark'" [class.bi-moon-stars-fill]="currentTheme() === 'light'"></i>
+          </button>
+        </li>
+        <li class="nav-item ms-lg-3">
+          <a class="btn btn-futuristic btn-sm mt-2 mt-lg-0" href="#contact" (click)="closeMenu()">Contact Me</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

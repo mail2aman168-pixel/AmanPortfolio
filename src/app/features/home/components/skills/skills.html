@@ -1,0 +1,69 @@
+<section id="skills" class="skills-section position-relative overflow-hidden" 
+         [class]="'effect-' + currentEffect()" 
+         #skillsContainer>
+  
+  <!-- Background Elements -->
+  <div class="particles-container">
+    <div *ngFor="let i of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]" class="particle"></div>
+  </div>
+  
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <h6 class="text-glow-cyan fw-bold mb-3 text-uppercase tracking-wider">Expertise</h6>
+      <h2 class="display-5 fw-bold mb-4">Professional <span class="gradient-text">Skills</span></h2>
+      
+      <!-- Theme Switcher -->
+      <div class="effect-switcher d-flex justify-content-center gap-2 mb-4">
+        @for (effect of themeEffects; track effect.id) {
+          <button 
+            (click)="setEffect(effect.id)"
+            class="btn-effect"
+            [class.active]="currentEffect() === effect.id"
+            [title]="effect.name + ' Mood'">
+            <i [class]="'bi ' + effect.icon"></i>
+            <span class="d-none d-md-inline ms-2">{{ effect.name }}</span>
+          </button>
+        }
+      </div>
+    </div>
+
+    <!-- The Knowledge Pot Area -->
+    <div class="knowledge-pot-wrapper d-flex flex-column align-items-center">
+      
+      <div class="skills-drop-zone position-relative w-100 mb-5">
+        <div class="d-flex flex-wrap justify-content-center gap-3">
+          @for (skill of allSkills; track skill.name) {
+            <div class="skill-bubble glass-card" [style.--skill-color]="skill.color">
+              <i [class]="'bi ' + skill.icon + ' me-2'"></i>
+              <span class="fw-medium">{{ skill.name }}</span>
+              <div class="skill-glow"></div>
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- The Pot -->
+      <div class="knowledge-pot glass-card" #knowledgePot>
+        <div class="pot-inner">
+          <div class="pot-liquid"></div>
+          <div class="pot-text">
+            <h4 class="mb-0 fw-bold">Knowledge Pot</h4>
+            <span class="small opacity-75">Collecting Expertise...</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Category Labels -->
+    <div class="row mt-5 justify-content-center g-4 category-labels">
+      @for (cat of skillCategories; track cat.name) {
+        <div class="col-auto">
+          <div class="category-chip px-3 py-1 rounded-pill border border-white border-opacity-10">
+            <span class="small fw-bold opacity-50">{{ cat.name }}</span>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+@import "assets/scss/variables";
+@import "bootstrap/scss/bootstrap";
+@import "bootstrap-icons/font/bootstrap-icons.css";
+@import "aos/dist/aos.css";
+
+:root {
+  --primary-gradient: #{$primary-gradient};
+  --secondary-gradient: #{$secondary-gradient};
+  --bg-main: #{$bg-dark};
+  --bg-slate: #{$bg-slate};
+  --bg-card: #{$bg-card-dark};
+  --border-glass: #{$border-glass-dark};
+  --text-main: #{$text-main-dark};
+  --text-muted: #{$text-muted-dark};
+  --text-glow: #{$text-glow};
+  --glow-cyan: #{$glow-cyan};
+  --glow-purple: #{$glow-purple};
+  --navbar-bg: rgba(11, 16, 32, 0.8);
+}
+
+[data-theme="light"] {
+  --bg-main: #{$bg-light};
+  --bg-slate: #{$bg-slate-light};
+  --bg-card: #{$bg-card-light};
+  --border-glass: #{$border-glass-light};
+  --text-main: #{$text-main-light};
+  --text-muted: #{$text-muted-light};
+  --navbar-bg: rgba(248, 250, 252, 0.8);
+  
+  // Adjust glows for light theme
+  --glow-cyan: 0 0 20px rgba(0, 212, 255, 0.15);
+  --glow-purple: 0 0 20px rgba(110, 0, 255, 0.15);
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  overflow-x: hidden;
+  font-family: $font-family-sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+// Glassmorphism Utility
+.glass-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-glass);
+  border-radius: 16px;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    [data-theme="light"] & {
+      border-color: rgba(0, 0, 0, 0.2);
+    }
+    transform: translateY(-5px);
+  }
+}
+
+// Glow Effects
+.text-glow-cyan {
+  color: var(--text-glow);
+  text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+}
+
+.bg-glow-purple {
+  box-shadow: var(--glow-purple);
+}
+
+.gradient-text {
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.btn-futuristic, .btn-futuristic-outline {
+  padding: 12px 28px;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-futuristic {
+  background: var(--primary-gradient);
+  border: none;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--secondary-gradient);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+  }
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(110, 0, 255, 0.4);
+    color: white;
+    
+    &::before {
+      opacity: 1;
+    }
+  }
+}
+
+.btn-futuristic-outline {
+  background: transparent;
+  border: 1px solid var(--border-glass);
+  color: var(--text-main);
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.05);
+    [data-theme="light"] & {
+      background: rgba(0, 0, 0, 0.05);
+    }
+    border-color: var(--text-glow);
+    color: var(--text-main);
+    transform: scale(1.05);
+  }
+}
+
+// Custom Scrollbar
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-main);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+// Global Section Spacing
+section {
+  padding: 100px 0;
+  
+  @media (max-width: 768px) {
+    padding: 60px 0;
+  }
+}
+
+// Responsive Typography
+h1, .display-1 {
+  @media (max-width: 768px) {
+    font-size: clamp(2.5rem, 8vw, 4rem);
+  }
+}
+
+h2, .display-5 {
+  @media (max-width: 768px) {
+    font-size: clamp(1.8rem, 6vw, 2.5rem);
+  }
+}
+
+// Container padding for mobile
+.container {
+  @media (max-width: 576px) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+// Hide elements on ultra-small screens if necessary
+@media (max-width: 350px) {
+  .d-xs-none {
+    display: none !important;
+  }
+}
+
+.text-muted {
+  color: var(--text-muted) !important;
+}
+
+.bg-slate {
+  background-color: var(--bg-slate) !important;
+}
