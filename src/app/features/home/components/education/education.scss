@@ -14,3 +14,14 @@
   border-radius: 50%;
   border: 1px solid rgba(0, 212, 255, 0.1);
 }
+
+@media (max-width: 576px) {
+  .education-section {
+    padding: 56px 0;
+  }
+
+  .edu-icon {
+    width: 66px;
+    height: 66px;
+  }
+}

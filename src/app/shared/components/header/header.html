@@ -15,9 +15,17 @@
       </div>
       <span class="gradient-text">AMAN</span>KUMAR
     </a>
-    <button class="navbar-toggler" type="button" (click)="toggleMenu()" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="bi bi-list text-white fs-3"></span>
-    </button>
+    <div class="header-actions ms-auto order-lg-3">
+      <button class="theme-toggle-btn glass-card ms-md-3" (click)="toggleTheme()" [title]="'Switch to ' + (currentTheme() === 'dark' ? 'light' : 'dark') + ' mode'" aria-label="Toggle color theme">
+        <i class="bi" [class.bi-sun-fill]="currentTheme() === 'dark'" [class.bi-moon-stars-fill]="currentTheme() === 'light'"></i>
+      </button>
+      <a class="mobile-contact-btn glass-card d-lg-none" href="#contact" aria-label="Contact" title="Contact" (click)="closeMenu()">
+        <i class="bi bi-chat-dots-fill"></i>
+      </a>
+      <button class="navbar-toggler" type="button" (click)="toggleMenu()" aria-controls="navbarNav" [attr.aria-expanded]="menuOpen" aria-label="Toggle navigation">
+        <span class="bi bi-list fs-3"></span>
+      </button>
+    </div>
     <div class="collapse navbar-collapse" [class.show]="menuOpen" id="navbarNav">
       <ul class="navbar-nav ms-auto">
         @for (item of navItems; track item.link) {
@@ -25,12 +33,7 @@
             <a class="nav-link px-3" [href]="item.link" (click)="closeMenu()">{{ item.name }}</a>
           </li>
         }
-        <li class="nav-item d-flex align-items-center ms-lg-2">
-          <button class="theme-toggle-btn glass-card" (click)="toggleTheme()" [title]="'Switch to ' + (currentTheme() === 'dark' ? 'light' : 'dark') + ' mode'">
-            <i class="bi" [class.bi-sun-fill]="currentTheme() === 'dark'" [class.bi-moon-stars-fill]="currentTheme() === 'light'"></i>
-          </button>
-        </li>
-        <li class="nav-item ms-lg-3">
+        <li class="nav-item ms-lg-3 d-none d-lg-block">
           <a class="btn btn-futuristic btn-sm mt-2 mt-lg-0" href="#contact" (click)="closeMenu()">Contact Me</a>
         </li>
       </ul>

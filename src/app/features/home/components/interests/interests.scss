@@ -24,3 +24,17 @@
     }
   }
 }
+
+@media (max-width: 576px) {
+  .interests-section {
+    padding: 56px 0;
+  }
+
+  .interest-card {
+    padding: 1.5rem !important;
+
+    .interest-icon-wrapper {
+      padding: 16px;
+    }
+  }
+}

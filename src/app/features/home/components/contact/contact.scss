@@ -13,9 +13,23 @@
   justify-content: center;
   font-size: 1.5rem;
   border-radius: 12px;
+  flex: 0 0 auto;
+}
+
+.contact-info-item {
+  min-width: 0;
+
+  > div:last-child {
+    min-width: 0;
+  }
+
+  h6 {
+    overflow-wrap: anywhere;
+  }
 }
 
 .social-icon {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -36,6 +50,50 @@
   }
 }
 
+.has-tooltip {
+  &::before,
+  &::after {
+    position: absolute;
+    left: 50%;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, 6px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: 5;
+  }
+
+  &::before {
+    content: attr(data-tooltip);
+    bottom: calc(100% + 10px);
+    background: var(--bg-slate);
+    border: 1px solid var(--border-glass);
+    color: var(--text-main);
+    border-radius: 6px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1;
+    padding: 8px 10px;
+    white-space: nowrap;
+  }
+
+  &::after {
+    content: '';
+    bottom: calc(100% + 5px);
+    border: 5px solid transparent;
+    border-top-color: var(--border-glass);
+  }
+
+  &:hover,
+  &:focus-visible {
+    &::before,
+    &::after {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+  }
+}
+
 .form-control {
   &:focus {
     background: rgba(255, 255, 255, 0.05);
@@ -46,5 +104,43 @@
   
   &::placeholder {
     color: rgba(255, 255, 255, 0.2);
+  }
+
+  [data-theme="light"] & {
+    color: var(--text-main);
+
+    &:focus {
+      background: rgba(15, 23, 42, 0.04);
+      color: var(--text-main);
+    }
+
+    &::placeholder {
+      color: rgba(71, 85, 105, 0.65);
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .contact-section {
+    padding: 56px 0;
+  }
+
+  .glass-card {
+    padding: 1.25rem !important;
+  }
+
+  .contact-info-item {
+    align-items: flex-start !important;
+  }
+
+  .info-icon {
+    width: 44px;
+    height: 44px;
+    font-size: 1.2rem;
+  }
+
+  .social-icon {
+    width: 42px;
+    height: 42px;
   }
 }

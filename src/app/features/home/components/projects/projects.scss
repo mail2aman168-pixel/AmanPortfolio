@@ -13,6 +13,13 @@
   }
 }
 
+.project-tech {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
 .project-image-wrapper {
   position: relative;
   aspect-ratio: 16/10;
@@ -32,8 +39,38 @@
   width: 100%;
   height: 100%;
   background: rgba(11, 16, 32, 0.8);
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(2px);
   opacity: 0;
   transition: opacity 0.4s ease;
   z-index: 2;
+}
+
+@media (max-width: 576px) {
+  .project-image-wrapper {
+    aspect-ratio: 4/3;
+  }
+
+  .project-card {
+    .p-4 {
+      padding: 1.25rem !important;
+    }
+  }
+
+  .project-card .d-flex.justify-content-between {
+    align-items: flex-start !important;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .project-tech {
+    justify-content: flex-start;
+  }
+
+  .project-overlay {
+    opacity: 1;
+    background: linear-gradient(180deg, rgba(11, 16, 32, 0.04), rgba(11, 16, 32, 0.48));
+    backdrop-filter: none;
+    align-items: flex-end !important;
+    padding: 16px;
+  }
 }

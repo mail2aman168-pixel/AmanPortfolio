@@ -26,11 +26,29 @@
   --border-glass: #{$border-glass-light};
   --text-main: #{$text-main-light};
   --text-muted: #{$text-muted-light};
+  --text-glow: #007EA3;
   --navbar-bg: rgba(248, 250, 252, 0.8);
   
   // Adjust glows for light theme
   --glow-cyan: 0 0 20px rgba(0, 212, 255, 0.15);
   --glow-purple: 0 0 20px rgba(110, 0, 255, 0.15);
+
+  .text-white,
+  .text-white-50 {
+    color: var(--text-main) !important;
+  }
+
+  .border-white {
+    border-color: rgba(15, 23, 42, 0.14) !important;
+  }
+
+  .form-control {
+    color: var(--text-main) !important;
+
+    &::placeholder {
+      color: rgba(71, 85, 105, 0.65);
+    }
+  }
 }
 
 body {
@@ -39,6 +57,16 @@ body {
   overflow-x: hidden;
   font-family: $font-family-sans-serif;
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html {
+  overflow-x: clip;
+  scroll-padding-top: 88px;
+}
+
+img,
+svg {
+  max-width: 100%;
 }
 
 // Glassmorphism Utility
@@ -156,20 +184,30 @@ section {
   padding: 100px 0;
   
   @media (max-width: 768px) {
-    padding: 60px 0;
+    padding: 56px 0;
   }
 }
 
 // Responsive Typography
 h1, .display-1 {
   @media (max-width: 768px) {
-    font-size: clamp(2.5rem, 8vw, 4rem);
+    font-size: 3rem;
+    line-height: 1.08;
+  }
+
+  @media (max-width: 420px) {
+    font-size: 2.45rem;
   }
 }
 
 h2, .display-5 {
   @media (max-width: 768px) {
-    font-size: clamp(1.8rem, 6vw, 2.5rem);
+    font-size: 2rem;
+    line-height: 1.15;
+  }
+
+  @media (max-width: 420px) {
+    font-size: 1.75rem;
   }
 }
 
@@ -178,6 +216,27 @@ h2, .display-5 {
   @media (max-width: 576px) {
     padding-left: 20px;
     padding-right: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .lead {
+    font-size: 1rem;
+  }
+
+  .glass-card {
+    border-radius: 12px;
+  }
+
+  .btn-futuristic,
+  .btn-futuristic-outline {
+    width: 100%;
+    padding: 11px 20px;
+    min-height: 46px;
+  }
+
+  .tracking-wider {
+    letter-spacing: 0;
   }
 }
 
