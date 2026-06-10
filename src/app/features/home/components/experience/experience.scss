@@ -40,6 +40,40 @@
   z-index: 1;
 }
 
+@media (max-width: 767.98px) {
+  .timeline {
+    padding-left: 0;
+
+    &::before {
+      left: 12px;
+    }
+  }
+
+  .timeline-item {
+    padding-left: 38px;
+    margin-bottom: 32px;
+  }
+
+  .timeline-dot {
+    left: 3px;
+    top: 18px;
+  }
+
+  .timeline-content {
+    padding: 1.25rem !important;
+
+    > .d-flex {
+      align-items: flex-start !important;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    ul {
+      padding-left: 1rem;
+    }
+  }
+}
+
 @media (min-width: 768px) {
   .timeline::before {
     left: 50%;
